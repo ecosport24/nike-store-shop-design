@@ -4,9 +4,16 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCartState } from "../app/CartSlice";
 import logo from "../assets/logo.png";
+
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
+  const dispatch = useDispatch();
+  const onCartToggle = () => {
+    dispatch(setCartState({ cartState: true }));
+  };
   const onNavScroll = () => {
     if (window.scrollY > 30) {
       setNavState(true);
@@ -14,6 +21,7 @@ const Navbar = () => {
       setNavState(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", onNavScroll);
 
@@ -21,6 +29,7 @@ const Navbar = () => {
       window.removeEventListener("scroll", onNavScroll);
     };
   }, []);
+
   return (
     <>
       <header
@@ -57,6 +66,7 @@ const Navbar = () => {
               <button
                 type="button"
                 className="relative active:scale-110 transition-all duration-300"
+                onClick={onCartToggle}
               >
                 <ShoppingBagIcon
                   className={`icon-style ${
