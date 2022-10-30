@@ -59,7 +59,7 @@ const Stories = ({ story: { title, news } }) => {
                       {val.title}
                     </h1>
                     <p className="text-sm text-justify lg:text-xs">
-                      {truncate(val.text, { length: 175 })}
+                      {truncate(val.text, { length: 200 })}
                     </p>
                   </div>
                   <div className="flex items-center justify-center px-4 w-full">
