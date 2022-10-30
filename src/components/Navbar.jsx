@@ -4,12 +4,17 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setCartState } from "../app/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartItems,
+  selectCartTotalQty,
+  setCartState,
+} from "../app/CartSlice";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
+  const cartItemsTotalQty = useSelector(selectCartTotalQty);
   const dispatch = useDispatch();
   const onCartToggle = () => {
     dispatch(setCartState({ cartState: true }));
@@ -80,7 +85,7 @@ const Navbar = () => {
                       : "bg-white text-slate-900 shadow shadow-slate-100"
                   }`}
                 >
-                  0
+                  {cartItemsTotalQty}
                 </div>
               </button>
             </li>
